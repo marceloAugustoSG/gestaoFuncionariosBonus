@@ -1,6 +1,8 @@
 package com.gestaoDeFuncionarios.view;
 
 import com.gestaoDeFuncionarios.collection.FuncionarioCollection;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -104,6 +106,14 @@ public class PrincipalView extends javax.swing.JFrame {
     public void setmOpSair(JMenuItem mOpSair) {
         this.mOpSair = mOpSair;
     }
+    
+    public JMenuItem getImportData() {
+        return this.importData;
+    }
+    
+    public void setImportData(JMenuItem d) {
+        this.importData = d;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -118,6 +128,7 @@ public class PrincipalView extends javax.swing.JFrame {
         mbFuncionario = new javax.swing.JMenu();
         mOpCadastrar = new javax.swing.JMenuItem();
         mOpBuscar = new javax.swing.JMenuItem();
+        importData = new javax.swing.JMenuItem();
         mbSalario = new javax.swing.JMenu();
         mOpCalcularSalario = new javax.swing.JMenuItem();
         mbFerramentas = new javax.swing.JMenu();
@@ -179,6 +190,14 @@ public class PrincipalView extends javax.swing.JFrame {
         mOpBuscar.setText("Buscar");
         mbFuncionario.add(mOpBuscar);
 
+        importData.setText("Importar dados");
+        importData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importDataActionPerformed(evt);
+            }
+        });
+        mbFuncionario.add(importData);
+
         jMenuBar1.add(mbFuncionario);
 
         mbSalario.setText("Salário");
@@ -220,8 +239,13 @@ public class PrincipalView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mOpCadastrarActionPerformed
 
+    private void importDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importDataActionPerformed
+
+    }//GEN-LAST:event_importDataActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem importData;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mOpBuscar;

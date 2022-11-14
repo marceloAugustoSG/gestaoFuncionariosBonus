@@ -13,5 +13,5 @@ import java.util.ArrayList;
  * @author matheus
  */
 public interface IFileAdapter {
-    public ArrayList<Funcionario> read(String fileName) throws IOException;
+    public ArrayList<Funcionario> read() throws IOException;
 }

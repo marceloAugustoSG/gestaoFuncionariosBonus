@@ -1,0 +1,11 @@
+id,nome,idade,cargo,salarioBase,numFalatas,dataAdmissao,funcionarioDoMes,tipoBonus
+100,Alexine,95,doctor,529.58,41,2013-09-10,0,Normal
+101,Rubie,80,firefighter,2618.08,7,2013-09-01,0,Generoso
+102,Gerianna,73,worker,6115.03,5,2003-02-03,1,Normal
+103,Nonnah,70,firefighter,9073.06,28,2015-09-08,1,Normal
+104,Christal,55,worker,7732.16,25,2018-02-06,0,Generoso
+105,Amalie,20,developer,1687.51,41,2006-06-24,1,Normal
+106,Michaelina,31,firefighter,4449.92,39,2018-05-01,0,Normal
+107,Giustina,30,police officer,9586.29,39,2010-08-25,1,Generoso
+108,Corry,18,police officer,7039.24,20,2015-04-09,1,Normal
+109,Audrie,40,doctor,6588.19,32,2004-09-06,0,Generoso

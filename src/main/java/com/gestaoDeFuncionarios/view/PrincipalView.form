@@ -22,6 +22,14 @@
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="importData">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Importar dados"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="importDataActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mbSalario">

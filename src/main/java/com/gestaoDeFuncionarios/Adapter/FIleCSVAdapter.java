@@ -4,7 +4,6 @@ package com.gestaoDeFuncionarios.Adapter;
 import com.gestaoDeFuncionarios.impl.CSVRead;
 import com.gestaoDeFuncionarios.model.Funcionario;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /*
@@ -29,8 +28,8 @@ public class FIleCSVAdapter implements IFileAdapter {
     }
 
     @Override
-    public ArrayList<Funcionario> read(String fileName) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Funcionario> read() {
+        return read.read();
     }
 
 }

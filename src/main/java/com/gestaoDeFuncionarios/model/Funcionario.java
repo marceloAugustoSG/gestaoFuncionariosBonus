@@ -160,4 +160,12 @@ public class Funcionario {
         return "Funcionario{" + "nome=" + nome + ", idade=" + idade + ", salario=" + salario + ", salarioBase=" + salarioBase + ", cargo=" + cargo + ", numFaltas=" + numFaltas + ", dataAdmissao=" + dataAdmissao + ", funcionarioDoMes=" + funcionarioDoMes + ", tipoBonus=" + tipoBonus + ", listBonus=" + listBonus + '}';
     }
 
+    public void setDistanciaTrabalho(double parseDouble) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setTempoServico(double parseDouble) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

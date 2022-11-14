@@ -35,12 +35,16 @@ public class CSVRead {
             while (input.hasNext()) {
                 String[] linha = input.nextLine().split(",");
                 Funcionario funcionario = new Funcionario();
+                
                 funcionario.setNome(linha[1]);
-                funcionario.setCargo(linha[2]);
-                funcionario.setSalarioBase(Double.parseDouble(linha[3]));
-                funcionario.setDistanciaTrabalho(Double.parseDouble(linha[4]));
-                funcionario.setTempoServico(Double.parseDouble(linha[5]));
+                funcionario.setIdade(Integer.parseInt(linha[2]));
+                funcionario.setCargo(linha[3]);
+                funcionario.setSalarioBase(Double.parseDouble(linha[4]));
+                funcionario.setNumFaltas(Integer.parseInt(linha[5]));
                 funcionario.setDataAdmissao(linha[6]);
+                funcionario.setFuncionarioDoMes(Boolean.parseBoolean(linha[7]));
+                funcionario.setTipoBonus(linha[8]);
+                
                 funcionarios.add(funcionario);
             }
         } catch (IOException e) {
