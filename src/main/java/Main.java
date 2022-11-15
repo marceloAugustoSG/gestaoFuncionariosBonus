@@ -1,10 +1,10 @@
-//
-//import com.mycompany.gestaofuncionario.view.PrincipalView;
-//
-//public class Main {
-//
-//    public static void main(String[] args) {
-//        new PrincipalView();
-//    }
-//
-//}
+
+import com.gestaoDeFuncionarios.presenter.PrincipalPresenter;
+
+public class Main {
+
+    public static void main(String[] args) {
+        new PrincipalPresenter();
+
+    }
+}

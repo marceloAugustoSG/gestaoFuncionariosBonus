@@ -1,11 +1,50 @@
 package com.gestaoDeFuncionarios.view;
 
-public class VerBonusView extends javax.swing.JFrame {
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
+public class VerBonusView extends javax.swing.JFrame {
+    
     public VerBonusView() {
         initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(this.getParent());
     }
-
+    
+    public JButton getBtnFechar() {
+        return btnFechar;
+    }
+    
+    public void setBtnFechar(JButton btnFechar) {
+        this.btnFechar = btnFechar;
+    }
+    
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+    
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+    
+    public JTable getTblVerBonusFuncionario() {
+        return tblVerBonusFuncionario;
+    }
+    
+    public void setTblVerBonusFuncionario(JTable tblVerBonusFuncionario) {
+        this.tblVerBonusFuncionario = tblVerBonusFuncionario;
+    }
+    
+    public JLabel getTxtNomeFuncionario() {
+        return txtNomeFuncionario;
+    }
+    
+    public void setTxtNomeFuncionario(JLabel txtNomeFuncionario) {
+        this.txtNomeFuncionario = txtNomeFuncionario;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -26,7 +65,7 @@ public class VerBonusView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Data do Cálculo", "Cargo", "Tipo de Bônus", "Valor do Bônus"
+
             }
         ));
         jScrollPane1.setViewportView(tblVerBonusFuncionario);
@@ -62,7 +101,6 @@ public class VerBonusView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFechar;

@@ -18,34 +18,34 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class PrincipalPresenter {
-    
+
     private PrincipalView view;
     private FuncionarioSQLDAO funcionarios;
-    
+
     public PrincipalPresenter() {
         view = new PrincipalView();
         this.funcionarios = new FuncionarioSQLDAO();
-        
+
         view.getmOpCadastrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ManterFuncionarioPresenter(funcionarios);
             }
         });
-        
+
         view.getmOpBuscar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 try {
                     new BuscarFuncionarioPresenter(funcionarios);
                 } catch (SQLException ex) {
                     Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
         });
-        
+
         view.getmOpCalcularSalario().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,48 +56,48 @@ public class PrincipalPresenter {
                 }
             }
         });
-        
+
         view.getmOpSair().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fechar();
             }
         });
-        
+
         view.getmOpTrocarMecanismoLog().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             }
         });
-        
+
         view.getImportData().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 escolherArquivo();
             }
         });
-        
+
         view.getTxtNumFuncionarios().setText(Integer.toString(funcionarios.getFuncionarios().size()));
     }
-    
+
     private void escolherArquivo() {
         LerArquivo lerArquivo = new LerArquivo();
-        
+
         try {
             String arquivo = lerArquivo.escolherArquivo();
             IFileAdapter ler = new FIleCSVAdapter(arquivo);
-            
+
             ArrayList<Funcionario> funcionarios = ler.read();
-            
+
             funcionarios.forEach(f -> this.funcionarios.create(f));
-            
+
         } catch (Exception e) {
             System.out.println(e.toString());
             JOptionPane.showMessageDialog(null, "Error!",
-               e.getMessage(), JOptionPane.ERROR_MESSAGE);
+                    e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void fechar() {
         System.exit(0);
     }

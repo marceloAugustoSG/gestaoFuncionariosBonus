@@ -1,5 +1,6 @@
 package com.gestaoDeFuncionarios.model;
 
+import com.gestaoDeFuncionarios.model.Falta;
 import java.util.ArrayList;
 
 public class Funcionario {
@@ -7,58 +8,41 @@ public class Funcionario {
     private int idFuncionario;
     private String nome;
     private int idade;
-    private double salario;
-    private double salarioBase;
     private String cargo;
+    private double salarioBase;
+    private double salario;
     private int numFaltas;
     private String dataAdmissao;
-    private boolean funcionarioDoMes;
-    private String tipoBonus;
-    private ArrayList<Bonus> listBonus;
-    //private double bonus;
-
-    // o bonus ainda nao está sendo usado para salvar o funcionario
-    //private Bonus bonus;
-    public Funcionario(String nome, int idade, double salario, String tipoBonus, String cargo) {
-        this.nome = nome;
-        this.idade = idade;
-        this.salario = salario;
-        this.tipoBonus = tipoBonus;
-        this.cargo = cargo;
-
-    }
-
-    public Funcionario(String nome, int idade, double salarioBase, String cargo, int numFaltas, String dataAdmissao, boolean funcionarioDoMes, String tipoBonus) {
-        this.nome = nome;
-        this.idade = idade;
-        this.salarioBase = salarioBase;
-        this.cargo = cargo;
-        this.numFaltas = numFaltas;
-        this.dataAdmissao = dataAdmissao;
-        this.funcionarioDoMes = funcionarioDoMes;
-        this.tipoBonus = tipoBonus;
-
-    }
-
-    public Funcionario(String nome, double salario, String cargo) {
-        this.nome = nome;
-        this.salario = salario;
-        this.cargo = cargo;
-    }
+    private boolean isFuncionarioMes;
+    private double distanciaTrabalho;
+    private double tempoServico;
+    private ArrayList<Bonus> bonusRecebidos = new ArrayList<>();
+    private ArrayList<Falta> faltas = new ArrayList<>();
 
     public Funcionario() {
+    }
+
+    public Funcionario(String nome, int idade, String cargo, double salarioBase, int numFaltas, String dataAdmissao, boolean isFuncionarioMes) {
+
+        this.nome = nome;
+        this.idade = idade;
+        this.cargo = cargo;
+        this.salarioBase = salarioBase;
+        this.numFaltas = numFaltas;
+        this.dataAdmissao = dataAdmissao;
+        this.isFuncionarioMes = isFuncionarioMes;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public int getIdFuncionario() {
         return idFuncionario;
     }
 
-    public void setIdFuncionario(int idFuncionario) {
+    public void setIdFuncionario(int id) {
         this.idFuncionario = idFuncionario;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public void setNome(String nome) {
@@ -73,12 +57,12 @@ public class Funcionario {
         this.idade = idade;
     }
 
-    public double getSalario() {
-        return salario;
+    public String getCargo() {
+        return cargo;
     }
 
-    public void setSalario(double salario) {
-        this.salario = salario;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     public double getSalarioBase() {
@@ -89,83 +73,139 @@ public class Funcionario {
         this.salarioBase = salarioBase;
     }
 
-    public String getCargo() {
-        return cargo;
+    public double getSalario() {
+        return salario;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
-    /*public Bonus getBonus() {
-        return bonus;
-    }
-
-    public void setBonus(Bonus bonus) {
-        this.bonus = bonus;
-    }*/
-    public int getNumFaltas() {
-        return this.numFaltas;
-    }
-
-    public void setNumFaltas(int numFaltas) {
-        this.numFaltas = numFaltas;
+    public void setSalario(double salario) {
+        this.salario = salario;
     }
 
     public String getDataAdmissao() {
-        return this.dataAdmissao;
+        return dataAdmissao;
     }
 
     public void setDataAdmissao(String dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
     }
 
-    public boolean isFuncionarioDoMes() {
-        return funcionarioDoMes;
+    public boolean isIsFuncionarioMes() {
+        return isFuncionarioMes;
     }
 
-    public void setFuncionarioDoMes(boolean funcionarioDoMes) {
-        this.funcionarioDoMes = funcionarioDoMes;
+    public void setIsFuncionarioMes(boolean isFuncionarioMes) {
+        this.isFuncionarioMes = isFuncionarioMes;
     }
 
-    public String getTipoBonus() {
-        return tipoBonus;
+    public double getDistanciaTrabalho() {
+        return distanciaTrabalho;
     }
 
-    public void setTipoBonus(String tipoBonus) {
-        this.tipoBonus = tipoBonus;
+    public void setDistanciaTrabalho(double distanciaTrabalho) {
+        this.distanciaTrabalho = distanciaTrabalho;
     }
 
-    public ArrayList<Bonus> getListBonus() {
-        return listBonus;
+    public double getTempoServico() {
+        return tempoServico;
     }
 
-    public void setListBonus(ArrayList<Bonus> listBonus) {
-        this.listBonus = listBonus;
+    public void setTempoServico(double tempoServico) {
+        this.tempoServico = tempoServico;
+    }
+
+    public ArrayList<Falta> getFaltas() {
+        return faltas;
+    }
+
+    public void setFaltaAoTrabalho(ArrayList<Falta> faltas) {
+        this.faltas = faltas;
+    }
+
+    public void addFalta(Falta falta) {
+
+        if (faltas.contains(falta)) {
+            throw new RuntimeException("a falta já foi registrada");
+        }
+        if (falta != null) {
+            faltas.add(falta);
+        } else {
+            throw new RuntimeException("Forneça uma instancia de falta válida");
+        }
+    }
+
+    public void removeFalta(Falta falta) {
+
+        if (faltas.contains(falta)) {
+            faltas.remove(falta);
+        }
+        if (falta == null) {
+            throw new RuntimeException("Forneça uma instancia de falta válida");
+        }
     }
 
     public void addBonus(Bonus bonus) {
-        if (listBonus.contains(bonus)) {
-            throw new RuntimeException("Bônus já aplicado");
+
+        if (bonusRecebidos.contains(bonus)) {
+            throw new RuntimeException("Bonus já foi aplicado"); //tratar
         }
         if (bonus != null) {
-            listBonus.add(bonus);
+            bonusRecebidos.add(bonus);
         } else {
-            throw new RuntimeException("Forneça uma instancia de bônus válida");
+            throw new RuntimeException("Forneça uma instancia de bonus válida");
+        }
+    }
+
+    public void removeBonus(Bonus bonus) {
+
+        if (bonusRecebidos.contains(bonus)) {
+            bonusRecebidos.remove(bonusRecebidos);
+        }
+        if (bonus == null) {
+            throw new RuntimeException("Forneça uma instancia de bonus válida");
+        }
+    }
+
+    public ArrayList<Bonus> getBonusRecebidos() {
+        return bonusRecebidos;
+    }
+
+    public void calculaSalario() {
+        if (this.bonusRecebidos.size() == 0) {
+            this.salario = this.salarioBase;
+        } else {
+
+            double salarioFuncioanario = 0;
+            for (int i = 0; i < this.bonusRecebidos.size(); i++) {
+                salarioFuncioanario += this.salarioBase * bonusRecebidos.get(i).getValorBonus();
+            }
+            this.salario = salarioFuncioanario;
         }
     }
 
     @Override
     public String toString() {
-        return "Funcionario{" + "nome=" + nome + ", idade=" + idade + ", salario=" + salario + ", salarioBase=" + salarioBase + ", cargo=" + cargo + ", numFaltas=" + numFaltas + ", dataAdmissao=" + dataAdmissao + ", funcionarioDoMes=" + funcionarioDoMes + ", tipoBonus=" + tipoBonus + ", listBonus=" + listBonus + '}';
+        // esse toString foi para testar na main
+        String funcionario = "{Funcionario: " + nome + "\nIdade: " + idade + "\nCargo: " + cargo + "\nSalario Base: " + salarioBase + "\nSalario: " + salario + "\n[";
+        for (int i = 0; i < getBonusRecebidos().size(); i++) {
+            funcionario += this.getBonusRecebidos().get(i).toString();
+        }
+        return funcionario += this.getFaltas().toString() + "}";
     }
 
-    public void setDistanciaTrabalho(double parseDouble) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int getNumFaltas() {
+        return numFaltas;
     }
 
-    public void setTempoServico(double parseDouble) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setNumFaltas(int numFaltas) {
+        this.numFaltas = numFaltas;
+    }
+
+    public Object getTipoBonus() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean isFuncionarioDoMes() {
+        return isFuncionarioMes;
     }
 
 }

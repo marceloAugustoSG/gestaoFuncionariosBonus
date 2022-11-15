@@ -22,19 +22,19 @@ public class FuncionarioSQLDAO extends FuncionarioDAO {
 
         conexao.conectar();
         String sql = "INSERT INTO Funcionario("
-                + "nome,idade,salario,bonus,cargo,dataAdmissao,numeroFaltas,funcionarioMes)"
+                + "nome,idade,salario,cargo,dataAdmissao,numeroFaltas,funcionarioMes)"
                 + ""
-                + "VALUES(?,?,?,?,?,?,?,?)";
+                + "VALUES(?,?,?,?,?,?,?)";
         PreparedStatement stmt = conexao.criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
         try {
+
             stmt.setString(1, funcionario.getNome());
             stmt.setInt(2, funcionario.getIdade());
             stmt.setDouble(3, funcionario.getSalarioBase());
-            stmt.setString(4, funcionario.getTipoBonus());
-            stmt.setString(5, funcionario.getCargo());
-            stmt.setString(6, funcionario.getDataAdmissao());
-            stmt.setInt(7, funcionario.getNumFaltas());
-            stmt.setBoolean(8, funcionario.isFuncionarioDoMes());
+            stmt.setString(4, funcionario.getCargo());
+            stmt.setString(5, funcionario.getDataAdmissao());
+            stmt.setInt(6, funcionario.getNumFaltas());
+            stmt.setBoolean(7, funcionario.isFuncionarioDoMes());
 
             stmt.executeUpdate();
 
@@ -59,8 +59,7 @@ public class FuncionarioSQLDAO extends FuncionarioDAO {
             stmt.setString(1, funcionario.getNome());
             stmt.setInt(2, funcionario.getIdade());
             stmt.setDouble(3, funcionario.getSalario());
-            stmt.setString(4, funcionario.getTipoBonus());
-            stmt.setString(5, funcionario.getCargo());
+            stmt.setString(4, funcionario.getCargo());
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
@@ -69,7 +68,6 @@ public class FuncionarioSQLDAO extends FuncionarioDAO {
         conexao.desconectar();
         System.out.println("chegou aqui");
         return true;
-
     }
 
     public List<Funcionario> getFuncionarios() {
@@ -89,25 +87,21 @@ public class FuncionarioSQLDAO extends FuncionarioDAO {
             while (rs.next()) {
 
                 funcionario = new Funcionario();
+
                 funcionario.setIdFuncionario(rs.getInt(1));
                 funcionario.setNome(rs.getString(2));
                 funcionario.setIdade(rs.getInt(3));
-                funcionario.setSalario(rs.getDouble(4));
-                funcionario.setTipoBonus(rs.getString(5));
-                funcionario.setCargo(rs.getString(6));
+                funcionario.setSalarioBase(rs.getDouble(4));
+                funcionario.setCargo(rs.getString(5));
                 listaFuncionarios.add(funcionario);
-
             }
-
         } catch (Exception e) {
             System.err.println(e);
         }
         conexao.desconectar();
         return listaFuncionarios;
-
     }
 
-    @Override
     public List<Funcionario> getFuncionarios(String nome) {
         List<Funcionario> listaFuncionarios = new ArrayList<>();
         Funcionario funcionario = new Funcionario();
@@ -126,9 +120,8 @@ public class FuncionarioSQLDAO extends FuncionarioDAO {
                 funcionario.setIdFuncionario(rs.getInt(1));
                 funcionario.setNome(rs.getString(2));
                 funcionario.setIdade(rs.getInt(3));
-                funcionario.setSalario(rs.getDouble(4));
-                funcionario.setTipoBonus(rs.getString(5));
-                funcionario.setCargo(rs.getString(6));
+                funcionario.setSalarioBase(rs.getDouble(4));
+                funcionario.setCargo(rs.getString(5));
                 listaFuncionarios.add(funcionario);
 
             }
@@ -160,8 +153,7 @@ public class FuncionarioSQLDAO extends FuncionarioDAO {
                 funcionario.setNome(rs.getString(2));
                 funcionario.setIdade(rs.getInt(3));
                 funcionario.setSalario(rs.getDouble(4));
-                funcionario.setTipoBonus(rs.getString(5));
-                funcionario.setCargo(rs.getString(6));
+                funcionario.setCargo(rs.getString(5));
 
             }
         } catch (Exception e) {

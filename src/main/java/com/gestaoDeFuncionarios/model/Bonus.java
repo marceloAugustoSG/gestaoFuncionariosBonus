@@ -1,32 +1,38 @@
 package com.gestaoDeFuncionarios.model;
 
-public abstract class Bonus {
+public class Bonus {
 
-    private String tipo;
-    private double valor;
-    
-    public String getTipo() {
-        return tipo;
+    private String tipoBonus;
+    private double valorBonus;
+
+    public Bonus(String tipoBonus, double valorBonus) {
+        this.tipoBonus = tipoBonus;
+        this.valorBonus = valorBonus;
     }
 
-    public double getValor() {
-        return valor;
+    public Bonus() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public String getTipoBonus() {
+        return tipoBonus;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setTipoBonus(String tipoBonus) {
+        this.tipoBonus = tipoBonus;
     }
-    
-    public abstract double aplicaBonus(Funcionario funcionario);
-    public abstract boolean accept(Funcionario funcionario);
+
+    public double getValorBonus() {
+        return valorBonus;
+    }
+
+    public void setValorBonus(double valorBonus) {
+        this.valorBonus = valorBonus;
+    }
 
     @Override
     public String toString() {
-        return "Bonus{" + "tipo=" + tipo + ", valor=" + valor + '}';
+        return "Tipo do bonus:" + getTipoBonus() + "\nValor Bonus:" + getValorBonus() + "]\n";
     }
 
 }
