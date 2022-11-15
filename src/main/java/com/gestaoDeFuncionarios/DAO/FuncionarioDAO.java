@@ -10,6 +10,8 @@ public abstract class FuncionarioDAO {
     public ArrayList<IObserver> observers;
 
     public abstract boolean create(Funcionario funcionario);
+    
+    public abstract boolean update(Funcionario funcionario);
 
     public abstract List<Funcionario> getFuncionarios(String nome);
 
