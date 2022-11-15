@@ -185,7 +185,7 @@ public class Funcionario {
     @Override
     public String toString() {
         // esse toString foi para testar na main
-        String funcionario = "{Funcionario: " + nome + "\nIdade: " + idade + "\nCargo: " + cargo + "\nSalario Base: " + salarioBase + "\nSalario: " + salario + "\n[";
+        String funcionario = "ID: " + this.getIdFuncionario() + " {Funcionario: " + nome + "\nIdade: " + idade + "\nCargo: " + cargo + "\nSalario Base: " + salarioBase + "\nSalario: " + salario + "\n[";
         for (int i = 0; i < getBonusRecebidos().size(); i++) {
             funcionario += this.getBonusRecebidos().get(i).toString();
         }
