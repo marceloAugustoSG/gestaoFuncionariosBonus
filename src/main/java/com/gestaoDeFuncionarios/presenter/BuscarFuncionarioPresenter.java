@@ -72,7 +72,7 @@ public class BuscarFuncionarioPresenter {
         int index = view.getTblBuscarFuncionarios().getSelectedRow();
         if (index != -1) {
             funcionario = tblBFuncionarios.selectRow(index);
-
+            
             controleTela.setEstados(new VisualizarFuncionarioPresenter(funcionario));
 
         }
@@ -84,7 +84,7 @@ public class BuscarFuncionarioPresenter {
         int index = view.getTblBuscarFuncionarios().getSelectedRow();
         if (index != -1) {
             funcionario = tblBFuncionarios.selectRow(index);
-
+            
             controleTela.setEstados(new VerBonusPresenter(funcionario));
 
         }

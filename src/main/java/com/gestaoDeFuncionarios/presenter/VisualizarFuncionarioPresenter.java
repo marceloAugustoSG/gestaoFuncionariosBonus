@@ -1,6 +1,7 @@
 package com.gestaoDeFuncionarios.presenter;
 
 import com.gestaoDeFuncionarios.DAO.FuncionarioSQLDAO;
+import com.gestaoDeFuncionarios.model.Falta;
 import com.gestaoDeFuncionarios.view.BuscarFuncionarioView;
 import com.gestaoDeFuncionarios.view.ManterFuncionarioView;
 import com.gestaoDeFuncionarios.model.Funcionario;
@@ -16,8 +17,12 @@ public class VisualizarFuncionarioPresenter extends StateViews {
     private ManterFuncionarioView view;
     private BuscarFuncionarioView telaBuscar;
     private FuncionarioSQLDAO funcionarios;
+    private Funcionario funcionario = null;
 
     public VisualizarFuncionarioPresenter(Funcionario funcionario) {
+
+        this.funcionario = funcionario;
+        this.funcionarios = new FuncionarioSQLDAO();
 
         this.view = new ManterFuncionarioView();
 
@@ -43,7 +48,7 @@ public class VisualizarFuncionarioPresenter extends StateViews {
         view.getBtnSalvar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // editarFuncioanario();
+                atualizarOuCriar();
             }
 
         });
@@ -120,4 +125,56 @@ public class VisualizarFuncionarioPresenter extends StateViews {
 
     }
 
+    private void limparCampos() {
+        view.getTxtDataAdmissao().setText(" ");
+        view.getTxtFaltas().setText(" ");
+        view.getTxtIdade().setText(" ");
+        view.getTxtNome().setText(" ");
+        view.getTxtSalario().setText(" ");
+        view.getCbOpcoesCargo().setSelectedIndex(0);
+
+    }
+
+    private void atualizarOuCriar() {
+
+        Funcionario funcionario = null;
+        Falta faltas;
+
+        String nome = view.getTxtNome().getText();
+        int idade = Integer.parseInt(view.getTxtIdade().getText());
+        double salarioBase = Double.parseDouble(view.getTxtSalario().getText());
+        String cargo = (String) view.getCbOpcoesCargo().getSelectedItem();
+        int numFaltas = view.getTxtFaltas().getText().length() >= 1 ? Integer.parseInt(view.getTxtFaltas().getText()) : 0;
+        String dataAdmissao = view.getTxtDataAdmissao().getText();
+        boolean funcionarioDoMes = view.getCheckedFuncionarioMes().isSelected();
+
+        if (this.funcionario != null) {
+            funcionario = new Funcionario(nome, idade, cargo, salarioBase, numFaltas, dataAdmissao, funcionarioDoMes);
+            funcionario.setIdFuncionario(funcionario.getIdFuncionario());
+
+            faltas = new Falta(numFaltas);
+            funcionario.addFalta(faltas);
+
+            try {
+                funcionarios.update(funcionario);
+                
+                JOptionPane.showMessageDialog(view, "Funcionario :" + funcionario.getNome() + "\nCargo: " + funcionario.getCargo() + "\nIdade: " + funcionario.getIdade() + " \natualizado com sucesso!");
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                JOptionPane.showMessageDialog(null, "Não foi possível atualizar o funcionário!",
+                        e.getMessage(), JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            funcionario = new Funcionario(nome, idade, cargo, salarioBase, numFaltas, dataAdmissao, funcionarioDoMes);
+            funcionarios.create(funcionario);
+
+            faltas = new Falta(numFaltas);
+            funcionario.addFalta(faltas);
+            JOptionPane.showMessageDialog(view, "Funcionario :" + funcionario.getNome() + "\nCargo: " + funcionario.getCargo() + "\nIdade: " + funcionario.getIdade() + " \nsalvo com sucesso!");
+        }
+
+        limparCampos();
+    }
 }

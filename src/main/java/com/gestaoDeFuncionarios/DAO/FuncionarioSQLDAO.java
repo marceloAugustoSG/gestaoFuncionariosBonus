@@ -39,6 +39,7 @@ public class FuncionarioSQLDAO extends FuncionarioDAO {
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
+            System.out.println("kek" + ex.getMessage());
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         conexao.desconectar();
@@ -50,16 +51,23 @@ public class FuncionarioSQLDAO extends FuncionarioDAO {
     public boolean update(Funcionario funcionario) {
 
         conexao.conectar();
-        String sql = "UPDATE Funcionario SET nome = ?, idade= ?, salario = ?, bonus = ?, cargo = ? where idFuncionario = '" + funcionario.getIdFuncionario() + "'";
+        funcionario.setIdFuncionario(2);
+        String sql = "UPDATE Funcionario SET nome = ?, idade= ?, salario = ?, cargo = ?, dataAdmissao = ?, numeroFaltas = ? where idFuncionario = " + funcionario.getIdFuncionario() + "";
         PreparedStatement stmt = null;
 
         try {
             stmt = conexao.criarPreparedStatement(sql);
 
+            System.out.println("SQL: " + sql);
+            System.out.println("stmt" + stmt.toString());
+
             stmt.setString(1, funcionario.getNome());
             stmt.setInt(2, funcionario.getIdade());
             stmt.setDouble(3, funcionario.getSalario());
             stmt.setString(4, funcionario.getCargo());
+            stmt.setString(5, funcionario.getDataAdmissao());
+            stmt.setInt(6, funcionario.getNumFaltas());
+                    
             stmt.executeUpdate();
 
         } catch (SQLException ex) {

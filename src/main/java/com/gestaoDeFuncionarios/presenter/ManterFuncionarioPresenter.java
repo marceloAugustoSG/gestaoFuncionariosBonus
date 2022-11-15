@@ -16,6 +16,7 @@ public class ManterFuncionarioPresenter extends StateViews {
 
     public ManterFuncionarioPresenter(FuncionarioSQLDAO funcionarios) {
         this.funcionarios = funcionarios;
+        
         view = new ManterFuncionarioView();
         configurarTelaInicial();
 
@@ -29,7 +30,7 @@ public class ManterFuncionarioPresenter extends StateViews {
         view.getBtnSalvar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                salvar();
+//                salvar();
             }
         });
 
@@ -43,37 +44,6 @@ public class ManterFuncionarioPresenter extends StateViews {
 
     private void fechar() {
         view.dispose();
-    }
-
-    private void limparCampos() {
-        view.getTxtDataAdmissao().setText(" ");
-        view.getTxtFaltas().setText(" ");
-        view.getTxtIdade().setText(" ");
-        view.getTxtNome().setText(" ");
-        view.getTxtSalario().setText(" ");
-        view.getCbOpcoesCargo().setSelectedIndex(0);
-
-    }
-
-    private void salvar() {
-
-        Funcionario funcionario = null;
-        Falta faltas;
-        String nome = view.getTxtNome().getText();
-        int idade = Integer.parseInt(view.getTxtIdade().getText());
-        double salarioBase = Double.parseDouble(view.getTxtSalario().getText());
-        String cargo = (String) view.getCbOpcoesCargo().getSelectedItem();
-        int numFaltas = Integer.parseInt(view.getTxtFaltas().getText());
-        String dataAdmissao = view.getTxtDataAdmissao().getText();
-        boolean funcionarioDoMes = view.getCheckedFuncionarioMes().isSelected();
-
-        funcionario = new Funcionario(nome, idade, cargo, salarioBase, numFaltas, dataAdmissao, funcionarioDoMes);
-        funcionarios.create(funcionario);
-        //id++;
-        faltas = new Falta(numFaltas);
-        funcionario.addFalta(faltas);
-        JOptionPane.showMessageDialog(view, "Funcionario :" + funcionario.getNome() + "\nCargo: " + funcionario.getCargo() + "\nIdade: " + funcionario.getIdade() + " \nsalvo com sucesso!");
-        limparCampos();
     }
 
     @Override

@@ -38,11 +38,11 @@ public class Funcionario {
     }
 
     public int getIdFuncionario() {
-        return idFuncionario;
+        return this.idFuncionario;
     }
 
     public void setIdFuncionario(int id) {
-        this.idFuncionario = idFuncionario;
+        this.idFuncionario = id;
     }
 
     public void setNome(String nome) {
@@ -185,7 +185,7 @@ public class Funcionario {
     @Override
     public String toString() {
         // esse toString foi para testar na main
-        String funcionario = "ID: " + this.getIdFuncionario() + " {Funcionario: " + nome + "\nIdade: " + idade + "\nCargo: " + cargo + "\nSalario Base: " + salarioBase + "\nSalario: " + salario + "\n[";
+        String funcionario = "ID: " + this.idFuncionario + " {Funcionario: " + nome + "\nIdade: " + idade + "\nCargo: " + cargo + "\nSalario Base: " + salarioBase + "\nSalario: " + salario + "\n[";
         for (int i = 0; i < getBonusRecebidos().size(); i++) {
             funcionario += this.getBonusRecebidos().get(i).toString();
         }

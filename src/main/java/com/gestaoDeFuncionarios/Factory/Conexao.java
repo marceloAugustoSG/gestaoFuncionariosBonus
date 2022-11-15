@@ -21,7 +21,7 @@ public class Conexao {
             String url = "jdbc:sqlite:db/db.db";
 
             this.conexao = DriverManager.getConnection(url);
-            System.out.println("Conectado");
+//            System.out.println("Conectado");
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -37,7 +37,7 @@ public class Conexao {
             if (this.conexao.isClosed() == false) {
                 this.conexao.close();
             }
-            System.out.println("desconectado");
+//            System.out.println("desconectado");
         } catch (SQLException e) {
 
             System.err.println(e.getMessage());
@@ -66,7 +66,7 @@ public class Conexao {
      */
     public PreparedStatement criarPreparedStatement(String pSQL, int RETURN_GENERATED_KEYS) {
         try {
-            System.out.println("Executando");
+//            System.out.println("Executando");
             return conexao.prepareStatement(pSQL, RETURN_GENERATED_KEYS);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,8 +86,10 @@ public class Conexao {
      */
     public PreparedStatement criarPreparedStatement(String sql) {
         try {
-            return this.conexao.prepareStatement(sql);
+            return conexao.prepareStatement(sql);
         } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println(e.getMessage());
             return null;
         }
     }
