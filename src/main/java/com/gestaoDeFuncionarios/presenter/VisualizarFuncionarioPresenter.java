@@ -5,6 +5,7 @@ import com.gestaoDeFuncionarios.model.Falta;
 import com.gestaoDeFuncionarios.view.BuscarFuncionarioView;
 import com.gestaoDeFuncionarios.view.ManterFuncionarioView;
 import com.gestaoDeFuncionarios.model.Funcionario;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -150,7 +151,7 @@ public class VisualizarFuncionarioPresenter extends StateViews {
 
         if (this.funcionario != null) {
             funcionario = new Funcionario(nome, idade, cargo, salarioBase, numFaltas, dataAdmissao, funcionarioDoMes);
-            funcionario.setIdFuncionario(funcionario.getIdFuncionario());
+            funcionario.setIdFuncionario(this.funcionario.getIdFuncionario());
 
             faltas = new Falta(numFaltas);
             funcionario.addFalta(faltas);
@@ -160,7 +161,7 @@ public class VisualizarFuncionarioPresenter extends StateViews {
                 
                 JOptionPane.showMessageDialog(view, "Funcionario :" + funcionario.getNome() + "\nCargo: " + funcionario.getCargo() + "\nIdade: " + funcionario.getIdade() + " \natualizado com sucesso!");
 
-            } catch (Exception e) {
+            } catch (HeadlessException e) {
                 System.out.println(e.getMessage());
                 JOptionPane.showMessageDialog(null, "Não foi possível atualizar o funcionário!",
                         e.getMessage(), JOptionPane.ERROR_MESSAGE);
@@ -173,8 +174,7 @@ public class VisualizarFuncionarioPresenter extends StateViews {
             faltas = new Falta(numFaltas);
             funcionario.addFalta(faltas);
             JOptionPane.showMessageDialog(view, "Funcionario :" + funcionario.getNome() + "\nCargo: " + funcionario.getCargo() + "\nIdade: " + funcionario.getIdade() + " \nsalvo com sucesso!");
+            limparCampos();
         }
-
-        limparCampos();
     }
 }

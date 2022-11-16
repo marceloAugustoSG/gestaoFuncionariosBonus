@@ -51,7 +51,6 @@ public class FuncionarioSQLDAO extends FuncionarioDAO {
     public boolean update(Funcionario funcionario) {
 
         conexao.conectar();
-        funcionario.setIdFuncionario(2);
         String sql = "UPDATE Funcionario SET nome = ?, idade= ?, salario = ?, cargo = ?, dataAdmissao = ?, numeroFaltas = ? where idFuncionario = " + funcionario.getIdFuncionario() + "";
         PreparedStatement stmt = null;
 
