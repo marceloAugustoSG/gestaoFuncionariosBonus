@@ -31,7 +31,7 @@ public class VisualizarFuncionarioPresenter extends StateViews {
         view.setLocationRelativeTo(null);
         view.getTxtNome().setText(funcionario.getNome());
         view.getTxtIdade().setText(String.valueOf(funcionario.getIdade()));
-        view.getTxtSalario().setText(String.valueOf(funcionario.getSalario()));
+        view.getTxtSalario().setText(String.valueOf(funcionario.getSalarioBase()));
         //view.getTxtFaltas().setText(String.valueOf(funcionario.funcionario()));
         funcionario.setDataAdmissao("10082020");
         view.getTxtDataAdmissao().setText(funcionario.getDataAdmissao());
@@ -158,7 +158,7 @@ public class VisualizarFuncionarioPresenter extends StateViews {
 
             try {
                 funcionarios.update(funcionario);
-                
+
                 JOptionPane.showMessageDialog(view, "Funcionario :" + funcionario.getNome() + "\nCargo: " + funcionario.getCargo() + "\nIdade: " + funcionario.getIdade() + " \natualizado com sucesso!");
 
             } catch (HeadlessException e) {

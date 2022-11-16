@@ -62,11 +62,11 @@ public class FuncionarioSQLDAO extends FuncionarioDAO {
 
             stmt.setString(1, funcionario.getNome());
             stmt.setInt(2, funcionario.getIdade());
-            stmt.setDouble(3, funcionario.getSalario());
+            stmt.setDouble(3, funcionario.getSalarioBase());
             stmt.setString(4, funcionario.getCargo());
             stmt.setString(5, funcionario.getDataAdmissao());
             stmt.setInt(6, funcionario.getNumFaltas());
-                    
+
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
